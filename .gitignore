@@ -1,0 +1,13 @@
+bin/
+obj/
+log/
+logs/
+Output/
+packages/
+*.suo
+*.log
+*.svclog
+*.sln.ide/
+InstallerPackages/
+ResourcesZip/
+Thumbs.db

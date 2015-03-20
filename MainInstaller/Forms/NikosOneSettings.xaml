@@ -1,0 +1,31 @@
+<Grid xmlns:Forms="clr-namespace:Installer.Forms;assembly=Installer"   
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mainInstaller="clr-namespace:Installer;assembly=Installer">
+    <Grid.Resources>
+        <ResourceDictionary>
+            <mainInstaller:InvertedBooleanToVisibilityConverter x:Key="IBTV"/>
+        </ResourceDictionary>
+    </Grid.Resources>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto"></ColumnDefinition>
+        <ColumnDefinition Width="*"></ColumnDefinition>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+    </Grid.RowDefinitions>
+    <TextBlock Grid.Row="0">nikos one Server URL</TextBlock>
+    <TextBox Grid.Row="0" Grid.Column="1"></TextBox>
+
+    <TextBlock Grid.Row="1">File Server URL</TextBlock>
+    <TextBox Grid.Row="1" Grid.Column="1"></TextBox>
+
+    <Border Grid.Row="2" Height="20"/>
+    <GroupBox Header="Database" Grid.Row="4" Grid.ColumnSpan="2" Visibility="{Binding DemoDbTask.IsSelected, Converter={StaticResource IBTV}}">
+        <Forms:ConnectionStringControl/>
+    </GroupBox>
+</Grid>

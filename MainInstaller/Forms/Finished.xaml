@@ -1,0 +1,56 @@
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mainInstaller="clr-namespace:Installer;assembly=Installer"
+        xmlns:forms="clr-namespace:Installer.Forms;assembly=Installer">
+    <Grid.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BTV"/>
+            <mainInstaller:FileToUiElementConverter x:Key="FUEC"/>
+        </ResourceDictionary>
+    </Grid.Resources>
+
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <TextBlock TextWrapping="Wrap" Visibility="{Binding IsSuccess, Converter={StaticResource BTV}}">
+        <TextBlock Style="{DynamicResource PageTitle}">Sucess</TextBlock><LineBreak/>
+        The nikos one Installer completed successfully.  
+    </TextBlock>
+
+    <TextBlock TextWrapping="Wrap" Visibility="{Binding IsError, Converter={StaticResource BTV}}">
+        <TextBlock Style="{DynamicResource PageTitle}">Error</TextBlock><LineBreak/>
+        The nikos one Installer did not complete successfully.  
+    </TextBlock>
+
+    <TextBlock TextWrapping="Wrap" Visibility="{Binding IsCanceled, Converter={StaticResource BTV}}">
+        <TextBlock Style="{DynamicResource PageTitle}">Error</TextBlock><LineBreak/>
+        The nikos one Installer was canceled.  
+    </TextBlock>
+
+    <TextBlock Grid.Row="2">Thre following components have been installed.</TextBlock>
+
+    <ItemsControl Grid.Row="3" ItemsSource="{Binding Summary}" Grid.IsSharedSizeScope="True" Style="{DynamicResource TaskList}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition SharedSizeGroup="Selection" Width="*"></ColumnDefinition>
+                        <ColumnDefinition SharedSizeGroup="Link" Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="{Binding Name}" Grid.Column="0" Style="{DynamicResource GridCell}"></TextBlock>
+                    <TextBlock Grid.Column="1" TextWrapping="Wrap" Style="{DynamicResource GridCell}">
+                        <TextBlock>
+                            <Hyperlink NavigateUri="{Binding Url}" ToolTip="{Binding Url}" Command="{Binding Navigate}">Open</Hyperlink>
+                        </TextBlock>
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+</Grid>

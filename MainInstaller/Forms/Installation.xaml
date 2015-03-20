@@ -1,0 +1,79 @@
+<Grid xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mainInstaller="clr-namespace:Installer;assembly=Installer"
+        xmlns:forms="clr-namespace:Installer.Forms;assembly=Installer">
+    <Grid.Resources>
+        <ResourceDictionary>
+            <BooleanToVisibilityConverter x:Key="BTV"/>
+            <mainInstaller:FileToUiElementConverter x:Key="FUEC"/>
+        </ResourceDictionary>
+    </Grid.Resources>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="auto"/>
+        <RowDefinition Height="20"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <TextBlock TextWrapping="Wrap">
+        The selected components will be intalled now. During the installation process, 
+        the Microsoft Web Platform Installer will be executed several times.
+    </TextBlock>
+
+    <CheckBox Grid.Row="2" IsChecked="{Binding UseIisExpress}" Content="Install to IIS Express"/>
+
+    <ItemsControl Grid.Row="4" ItemsSource="{Binding SelectedTasks}" Grid.IsSharedSizeScope="True" Style="{DynamicResource TaskList}">
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition SharedSizeGroup="Icon" Width="auto"></ColumnDefinition>
+                        <ColumnDefinition SharedSizeGroup="Text" Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" Height="16" Style="{DynamicResource GridCell}">
+                        <ContentControl Content="{Binding Converter={StaticResource FUEC}, ConverterParameter=Images/cancelled}"
+                                            Visibility="{Binding IsCancelled, Converter={StaticResource BTV}}"></ContentControl>
+                        <ContentControl Content="{Binding Converter={StaticResource FUEC}, ConverterParameter=Images/error}"
+                                            Visibility="{Binding IsError, Converter={StaticResource BTV}}"></ContentControl>
+                        <ContentControl Content="{Binding Converter={StaticResource FUEC}, ConverterParameter=Images/success}"
+                                            Visibility="{Binding IsSuccess, Converter={StaticResource BTV}}"></ContentControl>
+                        <ContentControl Content="{Binding Converter={StaticResource FUEC}, ConverterParameter=Images/wait}"
+                                            Visibility="{Binding IsWaiting, Converter={StaticResource BTV}}"></ContentControl>
+                        <ContentControl Content="{Binding Converter={StaticResource FUEC}, ConverterParameter=Images/spinner}"
+                                            Visibility="{Binding IsRunning, Converter={StaticResource BTV}}"
+                                            RenderTransformOrigin="0.5, 0.5">
+                            <ContentControl.RenderTransform>
+                                <RotateTransform/>
+                            </ContentControl.RenderTransform>
+                            <ContentControl.Triggers>
+                                <EventTrigger RoutedEvent="ContentControl.Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Storyboard.TargetProperty="(Rectangle.RenderTransform).(RotateTransform.Angle)" To="-360" Duration="0:0:1" RepeatBehavior="Forever"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </ContentControl.Triggers>
+                        </ContentControl>
+                    </StackPanel>
+                    <TextBlock Text="{Binding Name}" Grid.Column="1" Style="{DynamicResource GridCell}"></TextBlock>
+                    <TextBlock Text="{Binding Text}" Grid.Column="1" Grid.Row="1" Style="{DynamicResource GridCell}"
+                               TextWrapping="Wrap"
+                               Visibility="{Binding IsError, Converter={StaticResource BTV}}"/>
+                </Grid>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+    <forms:LegalStuff Grid.Row="6" VerticalAlignment="Bottom"/>
+</Grid>

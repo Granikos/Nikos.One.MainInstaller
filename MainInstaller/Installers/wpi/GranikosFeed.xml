@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <version>1.0.0</version>
+  <title>Granikos</title>
+  <link href="http://www.granikos.eu/GranikosFeed.xml" />
+  <updated>2014-09-22T16:30:00Z</updated>
+
+  <author>
+    <name>Granikos</name>
+    <uri>http://www.granikos.eu/</uri>
+  </author>
+  <id>http://www.granikos.eu/GranikosFeed.xml</id>
+
+  <entry type="application">
+    <productId>GranikosNikosOne</productId>
+    <metadata>
+      <title>Nikos One</title>
+      <summary>The integratable shopping cart and order processing platform.</summary>
+      <longSummary>The integratable shopping cart and order processing platform.
+
+Seamlessly integrate shopping cart functionality to your existing business back-end and customer front-end.
+Connect external systems (e.g. your ERP and CRM or a database) to retrieve catalog or user data or to process customer orders. Add the shopping cart functionality to new or existing websites, enterprise applications or mobile apps.
+
+Nikos One is very flexible and easy to configure. Add required functionality through a fine-grained plug-ins system to ensure optimal fit to your requirements.
+
+Nikos One can be installed on-premise and on Windows Azure or other hosted servers. It supports complex server-farm and load-balancing configurations but can simply run in one web site on one server as well.
+      </longSummary>
+      <keywords>
+        <keywordId>ecommerce</keywordId>
+        <!-- <keywordId>AzureReady</keywordId> -->
+      </keywords>
+
+      <version>1.0</version>
+
+      <updated>2014-09-22T18:30:02Z</updated>
+      <published>2014-09-22T18:30:02Z</published>
+
+      <author>
+        <name>Granikos</name>
+        <uri>http://www.granikos.eu</uri>
+      </author>
+      
+      <images>
+        <!--<icon>http://localhost:46369/Nikos One.ico</icon>-->
+        <relativeIconUrl>packages/NikosOne.ico</relativeIconUrl>
+      </images>
+    </metadata>
+
+    <installers>
+      <installer>
+        <id>1</id>
+        <installerFile>
+          <fileSize>7824</fileSize>
+          <!--<installerUrl>http://localhost:46369/Nikos One.zip</installerUrl>-->
+          <relativeInstallerURL>packages/NikosOne.zip</relativeInstallerURL>
+          <sha1>1BA44E82C47F730BDEAD8F8AF2C7DF13C7829D4D</sha1>
+        </installerFile>
+        <msDeploy>
+          <startPage />
+        </msDeploy>
+      </installer>
+    </installers>
+
+    <dependency>
+<and>
+<dependency idref="nikosonedefault"/>
+<dependency><productId>GranikosNikosOneFileService</productId></dependency>
+</and>
+</dependency>
+
+    
+  </entry>
+
+  <entry type="application">
+    <productId>GranikosNikosOneFileService</productId>
+    <metadata>
+      <title>Nikos One File Service</title>
+      <summary>The file service for Nikos One. This package will be installed automatically.</summary>
+      <longSummary>The Nikos One File Service is installed automatically during the installation of Nikos One.
+      </longSummary>
+      <keywords>
+        <keywordId>ecommerce</keywordId>
+        <!-- <keywordId>AzureReady</keywordId> -->
+      </keywords>
+
+      <version>1.0</version>
+
+      <updated>2014-09-22T18:30:02Z</updated>
+      <published>2014-09-22T18:30:02Z</published>
+
+      <author>
+        <name>Granikos</name>
+        <uri>http://www.granikos.eu</uri>
+      </author>
+      
+      <images>
+        <!--<icon>http://localhost:46369/Nikos One File Service.ico</icon>-->
+        <relativeIconUrl>packages/NikosOneFileService.ico</relativeIconUrl>
+      </images>
+    </metadata>
+
+    <installers>
+      <installer>
+        <id>1</id>
+        <installerFile>
+          <fileSize>4513</fileSize>
+          <!--<installerUrl>http://localhost:46369/Nikos One File Service.zip</installerUrl>-->
+          <relativeInstallerURL>packages/NikosOneFileService.zip</relativeInstallerURL>
+          <sha1>CA60AF0A9DF0C03D4A931C069D8198330E16A249</sha1>
+        </installerFile>
+        <msDeploy>
+          <startPage />
+        </msDeploy>
+      </installer>
+    </installers>
+
+    <dependency idref="nikosonedefault"/>
+
+    
+  </entry>
+
+ <dependencies>
+ 
+    <dependency id="IISForASPNET">
+        <!--IIS 7.0-->
+          <and>
+            <dependency>
+              <productId>StaticContent</productId>
+            </dependency>
+            <dependency>
+              <productId>DefaultDocument</productId>
+            </dependency>
+            <dependency>
+              <productId>DirectoryBrowse</productId>
+            </dependency>
+            <dependency>
+              <productId>HTTPErrors</productId>
+            </dependency>
+            <dependency>
+              <productId>HTTPLogging</productId>
+            </dependency>
+            <dependency>
+              <productId>LoggingTools</productId>
+            </dependency>
+            <dependency>
+              <productId>RequestMonitor</productId>
+            </dependency>
+            <dependency>
+              <productId>RequestFiltering</productId>
+            </dependency>
+            <dependency>
+              <productId>StaticContentCompression</productId>
+            </dependency>
+            <dependency>
+              <productId>IISManagementConsole</productId>
+            </dependency>
+            <dependency>
+			        <productId>ASPNET45</productId>
+            </dependency>
+            <dependency>
+              <productId>NETExtensibility</productId>
+            </dependency>
+			      <dependency>
+			        <productId>ASPNET_REGIIS_NET4</productId>
+			      </dependency>
+            <dependency>
+              <productId>ISAPIFilters</productId>
+            </dependency>
+            <dependency>
+              <productId>ISAPIExtensions</productId>
+            </dependency>
+            <dependency>
+              <productId>NETFX4</productId>
+            </dependency>
+          </and>
+    </dependency>
+    <dependency id="nikosonedefault">
+      <and>
+        <dependency>
+          <or>
+            <dependency>
+              <productId>NETFramework4</productId>
+            </dependency>
+            <dependency>
+              <productId>NETFramework45</productId>
+            </dependency>
+            <dependency>
+              <productId>NETFX4</productId>
+            </dependency>
+          </or>
+        </dependency>
+        <dependency>
+          <or>
+            <dependency idref="IISForASPNET" />
+            <dependency>
+			        <or>
+				      <dependency>
+				        <productId>WebMatrix</productId>
+				      </dependency>
+				      <dependency>
+				        <productId>WebMatrix_appdetect</productId>
+				      </dependency>
+			        </or>
+            </dependency>
+          </or>
+        </dependency>
+        <dependency>
+          <or>
+            <dependency>
+              <productId>WDeployNOSMO</productId>
+            </dependency>
+            <dependency>
+              <productId>WDeploy</productId>
+            </dependency>
+          </or>
+        </dependency>
+      </and>
+    </dependency>
+ </dependencies>
+ 
+ <tabs>
+    <tab>
+      <keywordTab>
+        <id>granikos</id>
+        <name>Granikos</name>
+        <description>TODO</description>
+        <!-- Subtabs definitions -->
+        <keywords>
+          <keywordId>ecommerce</keywordId>
+        </keywords>
+      </keywordTab>
+    </tab>
+  </tabs>
+  <!-- Keyword/titles of subtabs to group apps with those keywords under -->
+  <keywords>
+    <keyword id="ecommerce">eCommerce</keyword>
+  </keywords>
+</feed>
+
